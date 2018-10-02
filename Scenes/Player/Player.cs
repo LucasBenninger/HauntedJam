@@ -4,8 +4,8 @@ using System;
 public class Player : KinematicBody2D
 {
     bool isWalking = false;
-    int speed = 100;
-    Vector2 moveDir = new Vector2();
+    [Export] public int speed = 100;
+    Vector2 velocity = new Vector2();
 
     AnimationPlayer animationPlayer;
 
@@ -18,19 +18,41 @@ public class Player : KinematicBody2D
     public override void _PhysicsProcess(float delta)
     {
         controls();
-        move();
         look();
+        move();
     }
 
     public void controls()
     {
+        velocity = new Vector2();
 
         bool up = Input.IsActionPressed("w");
         bool down = Input.IsActionPressed("s");
         bool left = Input.IsActionPressed("a");
         bool right = Input.IsActionPressed("d");
 
-        if (up || down || left || right)
+        //Movement
+        if (up)
+        {
+            velocity = new Vector2(speed, 0).Rotated(Rotation);
+        }
+        if (down)
+        {
+            velocity = new Vector2(-speed, 0).Rotated(Rotation);
+        }
+        // if (left)
+        // {
+        //     velocity = new Vector2(-speed, 0);
+        // }
+        // if (right)
+        // {
+        //     velocity = new Vector2(speed, 0);
+        // }
+
+        velocity = velocity.Normalized() * speed;
+        //Animation
+
+        if (up || down)
         {
             if (!isWalking)
             {
@@ -45,14 +67,13 @@ public class Player : KinematicBody2D
             isWalking = false;
         }
 
-        moveDir.y = -(up ? 1 : 0) + (down ? 1 : 0);
-        moveDir.x = -(left ? 1 : 0) + (right ? 1 : 0);
+        //moveDir.y = -(up ? 1 : 0) + (down ? 1 : 0);
+        //moveDir.x = -(left ? 1 : 0) + (right ? 1 : 0);
     }
 
     public void move()
     {
-        Vector2 motion = new Vector2(moveDir.x * speed, moveDir.y * speed);
-        this.MoveAndSlide(motion, new Vector2(0, 0));
+        this.MoveAndSlide(velocity, new Vector2(0, 0));
     }
 
     public void look()

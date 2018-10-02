@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://Assets/img/player/walk-flashlight.png" type="Texture" id=2]
+[ext_resource path="res://Assets/img/lights/lightmask.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 
@@ -25,9 +26,9 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 
 resource_name = "walk"
-length = 0.75
+length = 0.25
 loop = true
-step = 0.25
+step = 0.08
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -35,10 +36,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.08, 0.16 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 0, 1, 2 ]
 }
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -46,7 +47,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 10, 6 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 z_index = 1
 input_pickable = false
@@ -55,6 +56,7 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Z Index" ]
+speed = 100
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -62,6 +64,7 @@ rotation = 1.5708
 texture = ExtResource( 2 )
 offset = Vector2( 0, -6 )
 hframes = 4
+frame = 3
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
@@ -107,5 +110,30 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Smoothing" ]
+
+[node name="Light2D" type="Light2D" parent="Camera2D" index="0"]
+
+visible = false
+enabled = true
+editor_only = false
+texture = ExtResource( 3 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 3
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
 
 
