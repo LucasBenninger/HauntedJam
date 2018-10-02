@@ -48,7 +48,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 10, 6 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 z_index = 1
 input_pickable = false
@@ -130,14 +130,14 @@ range_z_max = 1024
 range_layer_min = 0
 range_layer_max = 0
 range_item_cull_mask = 1
-shadow_enabled = false
+shadow_enabled = true
 shadow_color = Color( 0, 0, 0, 0 )
 shadow_buffer_size = 2048
 shadow_gradient_length = 0.0
 shadow_filter = 0
 shadow_filter_smooth = 0.0
 shadow_item_cull_mask = 1
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Shadow", "Transform" ]
 
 [node name="Ambient" type="Light2D" parent="." index="5"]
 
@@ -155,13 +155,14 @@ range_z_max = 1024
 range_layer_min = 0
 range_layer_max = 0
 range_item_cull_mask = 1
-shadow_enabled = false
+shadow_enabled = true
 shadow_color = Color( 0, 0, 0, 0 )
 shadow_buffer_size = 2048
 shadow_gradient_length = 0.0
 shadow_filter = 0
 shadow_filter_smooth = 0.0
 shadow_item_cull_mask = 1
+_sections_unfolded = [ "Shadow" ]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." index="6"]
 

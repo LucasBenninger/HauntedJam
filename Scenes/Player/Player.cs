@@ -40,14 +40,6 @@ public class Player : KinematicBody2D
         {
             velocity = new Vector2(-speed, 0).Rotated(Rotation);
         }
-        // if (left)
-        // {
-        //     velocity = new Vector2(-speed, 0);
-        // }
-        // if (right)
-        // {
-        //     velocity = new Vector2(speed, 0);
-        // }
 
         velocity = velocity.Normalized() * speed;
         //Animation
@@ -66,9 +58,6 @@ public class Player : KinematicBody2D
             animationPlayer.Play("idle");
             isWalking = false;
         }
-
-        //moveDir.y = -(up ? 1 : 0) + (down ? 1 : 0);
-        //moveDir.x = -(left ? 1 : 0) + (right ? 1 : 0);
     }
 
     public void move()
