@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://Assets/img/player/walk-flashlight.png" type="Texture" id=2]
-[ext_resource path="res://Assets/img/lights/lightmask.png" type="Texture" id=3]
+[ext_resource path="res://Assets/img/lights/flashlight-beam.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 
@@ -111,9 +111,10 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Smoothing" ]
 
-[node name="Light2D" type="Light2D" parent="Camera2D" index="0"]
+[node name="Light2D" type="Light2D" parent="." index="4"]
 
-visible = false
+position = Vector2( 46, 9 )
+rotation = 1.5708
 enabled = true
 editor_only = false
 texture = ExtResource( 3 )
@@ -121,7 +122,7 @@ offset = Vector2( 0, 0 )
 texture_scale = 1.0
 color = Color( 1, 1, 1, 1 )
 energy = 1.0
-mode = 3
+mode = 0
 range_height = 0.0
 range_z_min = -1024
 range_z_max = 1024
@@ -135,5 +136,10 @@ shadow_gradient_length = 0.0
 shadow_filter = 0
 shadow_filter_smooth = 0.0
 shadow_item_cull_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="5"]
+
+color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
 
 
