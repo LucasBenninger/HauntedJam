@@ -7,8 +7,12 @@ public class Player : KinematicBody2D
     int speed = 100;
     Vector2 moveDir = new Vector2();
 
+    AnimationPlayer animationPlayer;
+
     public override void _Ready()
     {
+        animationPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
+        animationPlayer.Play("idle");
     }
 
     public override void _PhysicsProcess(float delta)
@@ -30,13 +34,14 @@ public class Player : KinematicBody2D
         {
             if (!isWalking)
             {
-                //Set animation to walk.
+                animationPlayer.Play("walk");
                 isWalking = true;
             }
         }
-        else
+        else if (!up && !down && !left && !right && isWalking)
         {
             //Idle
+            animationPlayer.Play("idle");
             isWalking = false;
         }
 
